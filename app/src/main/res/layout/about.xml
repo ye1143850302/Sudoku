@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip"
+    android:background="@drawable/man2_0">
+
+    <TextView
+        android:id="@+id/about_content"
+        android:layout_width="wrap_content"
+        android:layout_height="274dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10px"
+        android:text="      数独是源自18世纪瑞士的一种数学游戏。是一种运用纸、笔进行演算的逻辑游戏。玩家需要根据9×9盘面上的已知数字，推理出所有剩余空格的数字，并满足每一行、每一列、每一个粗线宫内的数字均含1-9，不重复。    2019年6月  Android移动开发设计  数独游戏 叶**" />
+</LinearLayout>

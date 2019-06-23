@@ -1,0 +1,15 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:icon="@drawable/bg_keypad">
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="music"
+        android:summary="music_summary"
+        android:title="music_title" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="hints"
+        android:summary="hints_summary"
+        android:title="hints_title"
+        />
+</PreferenceScreen>

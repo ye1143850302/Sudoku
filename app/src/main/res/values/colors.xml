@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00b885</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#00b885</color>
+    <color name="background">#3500ffff</color>
+    <color name="puzzle_background">#ADD8E6</color>
+    <color name="puzzle_hilite">#DDDDDD</color>//横线的颜色
+    <color name="puzzle_light">	#DDDDDD</color>//纵向线的颜色
+    <color name="puzzle_dark">#6456648f</color>//
+    <color name="puzzle_foreground">#ff000000</color>//字体颜色
+    <color name="puzzle_hint_0">#64ff0000</color>//表示没有可选数字  一个个重新选
+    <color name="puzzle_hint_1">#6400ff80</color>//有一个可选的数字的提示的颜色
+    <color name="puzzle_hint_2">#2000ff80</color>//有两个可选数字的提示的颜色
+    <color name="puzzle_selected">#99FF99</color>//选中的九宫格的颜色
+    <color name="shudu_prompt_background_color">#00b885</color>//按下keypad时，填充的颜色
+
+
+</resources>

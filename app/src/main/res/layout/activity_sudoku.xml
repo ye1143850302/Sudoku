@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sudoku">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/man1_0"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dip"
+            android:text="数独游戏"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/login_button_selector"
+            android:text="继续"
+            android:textSize="18sp"
+            android:layout_margin="20dp"/>
+
+        <Button
+            android:id="@+id/new_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button_selector"
+            android:text="新游戏"
+            android:layout_margin="20dp"/>
+
+        <Button
+            android:id="@+id/about_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button_selector"
+            android:text="关于"
+            android:layout_margin="20dp"
+            />
+
+        <Button
+            android:id="@+id/exit_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button_selector"
+            android:text="退出"
+            android:layout_margin="20dp"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
