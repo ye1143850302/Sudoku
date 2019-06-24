@@ -4,12 +4,12 @@
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="music"
-        android:summary="music_summary"
-        android:title="music_title" />
+        android:summary="默认打开"
+        android:title="背景音乐" />
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="hints"
-        android:summary="hints_summary"
-        android:title="hints_title"
+        android:summary="默认打开"
+        android:title="提示"
         />
 </PreferenceScreen>
