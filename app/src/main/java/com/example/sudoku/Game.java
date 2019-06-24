@@ -1,5 +1,7 @@
 package com.example.sudoku;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,13 +31,13 @@ public class Game extends AppCompatActivity {
             "000000700706040102004000000"+
             "000720903090301080000000600";//三种模式的初始化
 
-    private final int used[][][]=new int[9][9][];//存储不可用的数据
+    private final int used[][][]=new int[9][9][];//用于存储每个单元格已经不可用的数据
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onCreate");
-        int diff=getIntent().getIntExtra(KEY_DIFFICULTY, DIFFICULTY_EASY);//获取难度 difficulty easy =0
+        int diff=getIntent().getIntExtra(KEY_DIFFICULTY, DIFFICULTY_EASY);//获取难度 difficulty easy =0  默认为简单
         puzzle=getPuzzle(diff);//获取当前数据
         calculateUsedTiles();//获取当前关的不可用数字数组
 
@@ -63,11 +65,9 @@ public class Game extends AppCompatActivity {
         Music.play(this, R.raw.nothing_to_lose);//继续播放音乐
     }
 
-    protected int[] getUsedTiles(int x,int y){
-        return used[x][y];
-    }//返回不可用地址
 
-    private void calculateUsedTiles() {//计算不可用的位置
+
+    private void calculateUsedTiles() {////计算所有单元格对应的不可用的数据
         // TODO Auto-generated method stub
         for (int x = 0; x < 9; x++) {
             for (int y = 0; y < 9; y++) {
@@ -75,13 +75,17 @@ public class Game extends AppCompatActivity {
             }
         }
     }
-    private int[] calculateUsedTiles(int x, int y) {//获取当前关卡不可用的数字数组
+    protected int[] getUsedTiles(int x,int y){
+        return used[x][y];
+    }//取出某一单元格中已经不可用的数据
+
+    private int[] calculateUsedTiles(int x, int y) {//计算某一单元格之中已经不可用的数据
         // TODO Auto-generated method stub
-        int c[]=new int[9];
+        int c[]=new int[9];//
         //horizontal
 
-        for(int i=0;i<9;i++){
-            if(i==y)
+        for(int i=0;i<9;i++){//垂直方向
+            if(i==y)//如果这是用户点击的格子
                 continue;
             int t=getTitle(x, i);
             if(t!=0)
@@ -96,7 +100,7 @@ public class Game extends AppCompatActivity {
             if(t!=0)
                 c[t-1]=t;
         }
-        //same cell block
+        //计算在小的九宫格中有那些数字已经用过了.
         int startx=(x/3)*3;
         int starty=(y/3)*3;
         for(int i=startx;i<startx+3;i++){
@@ -108,7 +112,7 @@ public class Game extends AppCompatActivity {
                     c[t-1]=t;
             }
         }
-        //compress
+        // 把c中的0给去掉
         int nused=0;
         for (int t : c) {
             if(t!=0)
@@ -151,15 +155,16 @@ public class Game extends AppCompatActivity {
         return buf.toString();
     }
     //convert a puzzle string to an array
-    static protected int[] fromPuzzleString(String string) {
+    static protected int[] fromPuzzleString(String string) {//根据一个字符串数据,生成一个整型数组,初始化数据
         // TODO Auto-generated method stub
         int[] puz=new int[string.length()];
         for (int i = 0; i < puz.length; i++) {
-            puz[i]=string.charAt(i)-'0';//将获取的难度转换为字符
+            puz[i]=string.charAt(i)-'0';
         }
         return puz;
     }
-    public String getTitleString(int x, int y) {
+
+    public String getTitleString(int x, int y) {//根据x轴坐标和y轴坐标得到这一单元格不可用的数据
         // TODO Auto-generated method stub
         int v=getTitle(x,y);
         if(v==0)
@@ -167,7 +172,7 @@ public class Game extends AppCompatActivity {
         else
             return String.valueOf(v);
     }
-    private int getTitle(int x, int y) {
+    private int getTitle(int x, int y) {//根据九宫格当中的坐标,返回该坐标所应该填写的数字
         // TODO Auto-generated method stub
         return puzzle[y*9+x];
     }
@@ -175,7 +180,9 @@ public class Game extends AppCompatActivity {
         puzzle[y*9+x]=value;
     }
     //change the tile only if it's a valid move
-    protected boolean setTileIfValid(int x, int y, int value) {
+
+
+    protected boolean setTileIfValid(int x, int y, int value) {//设置可用的数字
         // TODO Auto-generated method stub
         int tiles[]=getUsedTiles(x, y);
         if(value!=0){
@@ -184,8 +191,8 @@ public class Game extends AppCompatActivity {
                     return false;
             }
         }
-        setTitle(x, y, value);
-        calculateUsedTiles();
+        setTitle(x, y, value);//把用户输入的数字添加到九宫格中
+        calculateUsedTiles();//更新该单元格可以使用的数字
         return true;
 
     }
@@ -203,4 +210,27 @@ public class Game extends AppCompatActivity {
             v.show();
         }
     }
+
+public void youwin(){
+    int t=0;
+    for (int i=0;i<81;i++){
+
+            if (puzzle[i]!=0){
+                t++;
+            }
+        }
+    if (t==81){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this,R.style.MenuDialog);
+        builder.setTitle("通关")
+                .setMessage("恭喜你 !完成")
+                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                    }
+                }).show();
+    }
+
+
+}
 }
